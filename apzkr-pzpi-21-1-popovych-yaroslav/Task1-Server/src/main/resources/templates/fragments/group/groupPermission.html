@@ -1,0 +1,25 @@
+<tr th:fragment="groupPermission (groupPermission)">
+  <td>
+    <label for="groupId"></label>
+    <input class="form-control"
+           type="text"
+           th:value="${groupPermission.groupId}" id="groupId" th:name="groupId"
+           disabled readonly/>
+  </td>
+  <td>
+    <label for="permissionId"></label>
+    <input class="form-control"
+           type="text"
+           th:value="${groupPermission.permissionId}" id="permissionId" th:name="permissionId"
+           disabled readonly/>
+  </td>
+  <td>
+    <button type="button" class="btn btn-danger"
+            th:hx-delete="@{/group/{groupId}/permission/{permissionId}(groupId=${groupPermission.groupId},permissionId=${groupPermission.permissionId})}"
+            hx-target="#group-permission-list-container"
+            hx-swap="outerHTML"
+    >
+      Delete
+    </button>
+  </td>
+</tr>

@@ -1,0 +1,43 @@
+<tr th:fragment="studentFragment (student)">
+  <th scope="row" th:text="${student.id}"></th>
+  <td>
+    <label for="studentFirstName"></label>
+    <input class="form-control"
+           type="text"
+           th:value="${student.firstName}" id="studentFirstName" th:name="firstName"/>
+  </td>
+  <td>
+    <label for="studentLastName"></label>
+    <input class="form-control"
+           type="text"
+           th:value="${student.lastName}" id="studentLastName" th:name="lastName"/>
+  </td>
+  <td>
+    <label for="studentEmail"></label>
+    <input class="form-control"
+           type="text"
+           th:value="${student.email}" id="studentEmail" th:name="email"/>
+  </td>
+  <td th:text="${student.createdAt}"></td>
+  <td th:text="${student.updatedAt}"></td>
+  <td th:text="${student.createdBy}"></td>
+  <td>
+    <button type="button" class="btn btn-outline-primary"
+            th:hx-put="@{/student/{id}(id=${student.id})}"
+            hx-include="closest tr"
+            hx-target="#student-list-container"
+            hx-swap="outerHTML"
+    >
+      Update
+    </button>
+  </td>
+  <td>
+    <button type="button" class="btn btn-danger"
+            th:hx-delete="@{/student/{id}(id=${student.id})}"
+            hx-target="#student-list-container"
+            hx-swap="outerHTML"
+    >
+      Delete
+    </button>
+  </td>
+</tr>

@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: headFragment}"></head>
+<body>
+  <header th:replace="~{fragments/header :: headerFragment}"></header>
+  <h1>Welcome to the Area Page</h1>
+  <br />
+  <div id="area-list-container" th:insert="~{fragments/area/areas :: areasFragment (${areas})}"></div>
+  <div id="area-form-container" th:insert="~{fragments/area/areasForm :: areaFormFragment}"></div>
+</body>
+</html>

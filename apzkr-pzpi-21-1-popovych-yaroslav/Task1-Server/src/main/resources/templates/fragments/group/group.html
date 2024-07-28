@@ -1,0 +1,31 @@
+<tr th:fragment="groupFragment (group)">
+  <th scope="row" th:text="${group.id}"></th>
+  <td>
+    <label for="groupName"></label>
+    <input class="form-control"
+           type="text"
+           th:value="${group.name}" id="groupName" th:name="name"/>
+  </td>
+  <td th:text="${group.createdAt}"></td>
+  <td th:text="${group.updatedAt}"></td>
+  <td th:text="${group.createdBy}"></td>
+  <td>
+    <button type="button" class="btn btn-outline-primary"
+            th:hx-put="@{/group/{id}(id=${group.id})}"
+            hx-include="closest tr"
+            hx-target="#group-list-container"
+            hx-swap="outerHTML"
+    >
+      Update
+    </button>
+  </td>
+  <td>
+    <button type="button" class="btn btn-danger"
+            th:hx-delete="@{/group/{id}(id=${group.id})}"
+            hx-target="#group-list-container"
+            hx-swap="outerHTML"
+    >
+      Delete
+    </button>
+  </td>
+</tr>

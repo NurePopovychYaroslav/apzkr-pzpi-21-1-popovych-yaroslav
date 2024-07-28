@@ -1,0 +1,63 @@
+<div id="logic-campus-area-door-permission" th:fragment="campusAreaDoorPermission (students, campuses)">
+  <h4>Is Door available for student?</h4>
+  <form id="campus-area-form">
+    <div>
+      <label for="student">Select Student:</label>
+      <select id="student" name="student">
+        <option th:value="-1">Select a Student</option>
+        <th:block th:each="student : ${students}">
+          <option th:value="${student.id}" th:text="${student.email}"></option>
+        </th:block>
+      </select>
+    </div>
+    <div>
+      <label for="campus">Select Campus:</label>
+      <select id="campus" name="campus" th:hx-get="@{/logic/area}" hx-target="#area-door-form" hx-include="this">
+        <option th:value="-1">-- Select a campus --</option>
+        <th:block th:each="campus : ${campuses}">
+          <option th:value="${campus.id}" th:text="${campus.name}"></option>
+        </th:block>
+      </select>
+    </div>
+    <div id="area-door-form"></div>
+    <div id="door-form"></div>
+  </form>
+  <br />
+  <div id="logic-path" th:insert="~{fragments/logic/logicPath :: logicPath (${students}, ${campuses})}"></div>
+</div>
+
+<div id="area-door-form" th:fragment="emptyAreaDoorFormFragment"></div>
+
+<div id="area-door-form" th:fragment="areaDoorFormFragment (areas)">
+  <th:block>
+    <label for="area">Select Area:</label>
+    <select id="area" name="area" th:hx-get="@{/logic/door}" hx-target="#door-form" hx-include="this">
+      <option th:value="-1">Select an Area:</option>
+      <th:blcok th:each="area : ${areas}">
+        <option th:value="${area.id}" th:text="${area.name}"></option>
+      </th:blcok>
+    </select>
+  </th:block>
+</div>
+
+<div id="door-form" th:fragment="emptyDoorFormFragment"></div>
+
+<div id="door-form" th:fragment="doorFormFragment (doors)">
+  <th:block>
+    <label for="door">Select Door:</label>
+    <select id="door" name="door" th:hx-get="@{/logic/door-available}" hx-target="#logic-result" hx-include="#door, #student, #area, #campus"
+            hx-trigger="change from:(#logic-result), change from:(#door-form), change from:(#student), change from:(#area-door-form), change from:(#campus)">
+      <option th:value="-1">Select A Door:</option>
+      <th:block th:each="door : ${doors}">
+        <option th:value="${door.id}" th:text="${door.name}"></option>
+      </th:block>
+    </select>
+  </th:block>
+</div>
+
+<div id="logic-result" th:fragment="emptyResult"></div>
+
+<div id="logic-result" th:fragment="resultPermission (available)">
+  <h3>Result:</h3>
+  <p th:text="${available}"></p>
+</div>

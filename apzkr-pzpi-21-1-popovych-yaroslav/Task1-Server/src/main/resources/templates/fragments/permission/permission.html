@@ -1,0 +1,31 @@
+<tr th:fragment="permissionFragment (permission)">
+  <th scope="row" th:text="${permission.id}"></th>
+  <td>
+    <label for="permissionName"></label>
+    <input class="form-control"
+           type="text"
+           th:value="${permission.name}" id="permissionName" th:name="name"/>
+  </td>
+  <td th:text="${permission.createdAt}"></td>
+  <td th:text="${permission.updatedAt}"></td>
+  <td th:text="${permission.createdBy}"></td>
+  <td>
+    <button type="button" class="btn btn-outline-primary"
+            th:hx-put="@{/permission/{id}(id=${permission.id})}"
+            hx-include="closest tr"
+            hx-target="#permission-list-container"
+            hx-swap="outerHTML"
+    >
+      Update
+    </button>
+  </td>
+  <td>
+    <button type="button" class="btn btn-danger"
+            th:hx-delete="@{/permission/{id}(id=${permission.id})}"
+            hx-target="#permission-list-container"
+            hx-swap="outerHTML"
+    >
+      Delete
+    </button>
+  </td>
+</tr>

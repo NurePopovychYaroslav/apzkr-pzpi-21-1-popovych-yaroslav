@@ -1,0 +1,17 @@
+<div id="group-permission-list-container" th:fragment="groupPermissionsFragment (groupPermissions)">
+  <tr th:if="${#lists.isEmpty(groupPermissions)}">
+    <td colspan="2"> No Group Permissions Available </td>
+  </tr>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">GroupId</th>
+      <th scope="col">PermissionId</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody class="table-group-divider" th:each="groupPermission : ${groupPermissions}">
+      <tr th:replace="~{/fragments/group/groupPermission :: groupPermission (${groupPermission})}"></tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,91 @@
+databaseChangeLog:
+  - changeSet:
+      id: v1.0.0_202406151419_create_student_table
+      author: anonymous
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: student_id_seq
+            startValue: 1
+            cacheSize: 1
+            cycle: false
+        - createTable:
+            columns:
+              - column:
+                  defaultValueSequenceNext: student_id_seq
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_student_account
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+              - column:
+                  name: first_name
+                  type: VARCHAR(255)
+              - column:
+                  name: last_name
+                  type: VARCHAR(255)
+
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: updated_at
+                  type: DATETIME
+              - column:
+                  name: version
+                  type: BIGINT
+              - column:
+                  name: created_by
+                  type: VARCHAR(255)
+              - column:
+                  name: updated_by
+                  type: VARCHAR(255)
+            tableName: student
+
+        - createTable:
+            tableName: student_groups
+            columns:
+              - column:
+                  name: student_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: group_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+        - addPrimaryKey:
+            columnNames: student_id, group_id
+            tableName: student_groups
+            constraintName: pk_student_groups
+
+        - addForeignKeyConstraint:
+            baseColumnNames: student_id
+            baseTableName: student_groups
+            constraintName: FK_STUDENT_GROUPS_ON_STUDENT
+            referencedTableName: student
+            referencedColumnNames: id
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: CASCADE
+
+        - addForeignKeyConstraint:
+            baseColumnNames: group_id
+            baseTableName: student_groups
+            constraintName: FK_STUDENT_GROUPS_ON_GROUPS
+            referencedColumnNames: id
+            referencedTableName: groups
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: CASCADE

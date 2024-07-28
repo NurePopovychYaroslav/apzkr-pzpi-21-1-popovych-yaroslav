@@ -1,0 +1,42 @@
+<tr th:fragment="campusFragment (campus)">
+    <th scope="row" th:text="${campus.id}"></th>
+    <td>
+        <a th:href="@{/campus/{campusId}/area(campusId=${campus.id})}">
+            <button type="button" class="btn btn-outline-success">Open</button>
+        </a>
+    </td>
+    <td>
+        <label for="campusName"></label>
+        <input class="form-control"
+               type="text"
+               th:value="${campus.name}" id="campusName" th:name="name"/>
+    </td>
+    <td>
+        <label for="campusLocation"></label>
+        <input class="form-control"
+               type="text"
+               th:value="${campus.location}" id="campusLocation" th:name="location"/>
+    </td>
+    <td th:text="${campus.createdAt}"></td>
+    <td th:text="${campus.updatedAt}"></td>
+    <td th:text="${campus.createdBy}"></td>
+    <td>
+        <button type="button" class="btn btn-outline-primary"
+                th:hx-put="@{/campus/{id}(id=${campus.id})}"
+                hx-include="closest tr"
+                hx-target="#campus-list-container"
+                hx-swap="outerHTML"
+        >
+            Update
+        </button>
+    </td>
+    <td>
+        <button type="button" class="btn btn-danger"
+                th:hx-delete="@{/campus/{id}(id=${campus.id})}"
+                hx-target="#campus-list-container"
+                hx-swap="outerHTML"
+        >
+            Delete
+        </button>
+    </td>
+</tr>

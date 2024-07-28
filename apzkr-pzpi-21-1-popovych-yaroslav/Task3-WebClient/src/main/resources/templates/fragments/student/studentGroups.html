@@ -1,0 +1,17 @@
+<div id="student-group-list-container" th:fragment="studentGroupsFragment (studentGroups)">
+  <tr th:if="${#lists.isEmpty(studentGroups)}">
+    <td colspan="2"> No Student Groups Available </td>
+  </tr>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">StudentId</th>
+      <th scope="col">GroupId</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody class="table-group-divider" th:each="studentGroup : ${studentGroups}">
+      <tr th:replace="~{/fragments/student/studentGroup :: studentGroup (${studentGroup})}"></tr>
+    </tbody>
+  </table>
+</div>

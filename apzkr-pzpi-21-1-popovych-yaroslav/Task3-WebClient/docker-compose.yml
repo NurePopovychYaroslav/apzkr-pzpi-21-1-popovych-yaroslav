@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  postgres-e-lock:
+    image: postgres
+    container_name: e-lock-backend
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: e-lock-backend
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+  keycloak_web:
+    image: quay.io/keycloak/keycloak:23.0.7
+    container_name: keycloak_web
+    environment:
+      KC_HOSTNAME: localhost
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    command: "start-dev"
+    ports:
+      - 19090:8080

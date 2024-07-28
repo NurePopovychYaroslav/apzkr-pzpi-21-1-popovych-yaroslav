@@ -1,0 +1,36 @@
+<div th:fragment="doorFormFragment (areas)">
+    <form class="row g-3"
+          th:hx-post="@{/campus/{campusId}/area/{areaId}/door(campusId=${campusId},areaId=${areaId})}"
+          hx-target="#door-list-container"
+          hx-swap="outerHTML"
+    >
+        <div class="col-md-4">
+            <label for="validationDefault01" class="form-label">Name</label>
+            <input type="text" class="form-control" id="validationDefault01" name="name" required>
+        </div>
+        <div class="col-md-4">
+            <label for="areaFrom" class="form-label">From</label>
+            <select id="areaFrom" name="areaFrom">
+                <option th:each="i : ${areas}" th:value="${i.id}" th:text="${i.id + '->' + i.name}"></option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="areaTo" class="form-label">To</label>
+            <select id="areaTo" name="areaTo">
+                <option th:each="i : ${areas}" th:value="${i.id}" th:text="${i.id + '->' + i.name}"></option>
+            </select>
+        </div>
+
+        <div class="col-12">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+                <label class="form-check-label" for="invalidCheck2">
+                    Agree to terms and conditions
+                </label>
+            </div>
+        </div>
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit">Add Door</button>
+        </div>
+    </form>
+</div>

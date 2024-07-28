@@ -1,0 +1,25 @@
+<tr th:fragment="doorPermission (doorPermission)">
+  <td>
+    <label for="doorId"></label>
+    <input class="form-control"
+           type="text"
+           th:value="${doorPermission.doorId}" id="doorId" th:name="doorId"
+           disabled readonly/>
+  </td>
+  <td>
+    <label for="permissionId"></label>
+    <input class="form-control"
+           type="text"
+           th:value="${doorPermission.permissionId}" id="permissionId" th:name="permissionId"
+           disabled readonly/>
+  </td>
+  <td>
+    <button type="button" class="btn btn-danger"
+            th:hx-delete="@{/campus/{campusId}/area/{areaId}/door/{doorId}/permission/{permissionId}(campusId=${campusId},areaId=${areaId},doorId=${doorPermission.doorId},permissionId=${doorPermission.permissionId})}"
+            hx-target="#door-permission-list-container"
+            hx-swap="outerHTML"
+    >
+      Delete
+    </button>
+  </td>
+</tr>

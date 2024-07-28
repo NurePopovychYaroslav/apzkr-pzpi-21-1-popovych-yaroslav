@@ -1,0 +1,21 @@
+<div id="group-list-container" th:fragment="groupsFragment(groups)">
+  <tr th:if="${#lists.isEmpty(groups)}">
+    <td colspan="2"> No Groups Available </td>
+  </tr>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">createdAt</th>
+        <th scope="col">updatedAt</th>
+        <th scope="col">createdBy</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider" th:each="group : ${groups}">
+      <tr th:replace="~{/fragments/group/group :: groupFragment (${group})}"></tr>
+    </tbody>
+  </table>
+</div>

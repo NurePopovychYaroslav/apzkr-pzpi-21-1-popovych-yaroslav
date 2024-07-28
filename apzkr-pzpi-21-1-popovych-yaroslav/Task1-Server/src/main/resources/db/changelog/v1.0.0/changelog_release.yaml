@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/v1.0.0/v1.0.0_202405191612_create_user_account_table.yaml
+  - include:
+      file: db/changelog/v1.0.0/v1.0.0_202405191810_create_campus_table.yaml
+  - include:
+      file: db/changelog/v1.0.0/v1.0.0_202405251303_create_area_table.yaml
+  - include:
+      file: db/changelog/v1.0.0/v1.0.0_202405261641_create_door_table.yaml
+  - include:
+      file: db/changelog/v1.0.0/v1.0.0_202406091314_create_permission_table.yaml
+  - include:
+      file: db/changelog/v1.0.0/v1.0.0_202406122319_create_group_table.yaml
+  - include:
+      file: db/changelog/v1.0.0/v1.0.0_202406151419_create_student_table.yaml

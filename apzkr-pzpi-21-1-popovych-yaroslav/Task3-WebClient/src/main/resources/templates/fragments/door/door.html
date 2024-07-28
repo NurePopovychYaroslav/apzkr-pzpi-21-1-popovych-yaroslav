@@ -1,0 +1,43 @@
+<tr th:fragment="doorFragment (door)">
+  <th scope="row" th:text="${door.id}"></th>
+  <td>
+    <label for="doorName"></label>
+    <input class="form-control"
+           type="text"
+           th:value="${door.name}" id="doorName" th:name="name"/>
+  </td>
+  <td>
+    <label for="doorFrom"></label>
+    <input class="form-control"
+           type="text"
+           th:value="${door.areaFromId}" id="doorFrom" th:name="areaFrom"/>
+  </td>
+  <td>
+    <label for="doorTo"></label>
+    <input class="form-control"
+           type="text"
+           th:value="${door.areaToId}" id="doorTo" th:name="areaTo"/>
+  </td>
+  <td th:text="${door.createdAt}"></td>
+  <td th:text="${door.updatedAt}"></td>
+  <td th:text="${door.createdBy}"></td>
+  <td>
+    <button type="button" class="btn btn-outline-primary"
+            th:hx-put="@{/campus/{campusId}/area/{areaId}/door/{doorId}(campusId=${campusId},areaId=${areaId},doorId=${door.id})}"
+            hx-include="closest tr"
+            hx-target="#door-list-container"
+            hx-swap="outerHTML"
+    >
+      Update
+    </button>
+  </td>
+  <td>
+    <button type="button" class="btn btn-danger"
+            th:hx-delete="@{/campus/{campusId}/area/{areaId}/door/{doorId}(campusId=${campusId},areaId=${areaId},doorId=${door.id})}"
+            hx-target="#door-list-container"
+            hx-swap="outerHTML"
+    >
+      Delete
+    </button>
+  </td>
+</tr>

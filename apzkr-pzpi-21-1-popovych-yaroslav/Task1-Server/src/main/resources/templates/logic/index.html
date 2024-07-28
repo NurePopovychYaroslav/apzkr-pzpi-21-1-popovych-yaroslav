@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: headFragment}"></head>
+<body>
+  <header th:replace="~{fragments/header :: headerFragment}"></header>
+  <h1>Welcome to the Logic Page</h1>
+  <br />
+  <div id="logic-campus-area-door-permission" th:insert="~{fragments/logic/logicInputs :: campusAreaDoorPermission (${students}, ${campuses})}"></div>
+  <br />
+  <div id="logic-result" th:insert="~{fragments/logic/logicInputs :: emptyResult}"></div>
+</body>
+</html>

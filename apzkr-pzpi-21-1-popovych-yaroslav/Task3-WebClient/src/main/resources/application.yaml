@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: eLock
+  datasource:
+    password: admin
+    username: postgres
+    url: jdbc:postgresql://localhost:5433/e-lock-backend
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  liquibase:
+    change-log: classpath:db/changelog/changelog_master.yaml
+    default-schema: elock
+    enabled: true
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: true
+  security:
+    oauth2:
+      client:
+        registration:
+          elock:
+            client-id: elock-client
+            client-secret: kJFqzeaOmRO7vph6H7TIUbhgeUbq5Cou
+            scope:
+              - openid
+              - profile
+              - email
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8080/login/oauth2/code/elock-client
+
+
+        provider:
+          elock:
+            issuer-uri: http://localhost:19090/realms/elock

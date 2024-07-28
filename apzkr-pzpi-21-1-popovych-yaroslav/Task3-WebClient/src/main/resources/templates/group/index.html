@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: headFragment}"></head>
+<body>
+    <header th:replace="~{fragments/header :: headerFragment}"></header>
+    <h1>Welcome to the Group Page</h1>
+    <br />
+    <div id="group-list-container" th:insert="~{fragments/group/groups :: groupsFragment (${groups})}"></div>
+    <div id="group-form-container" th:insert="~{fragments/group/groupForm :: groupFormFragment}"></div>
+
+    <div id="group-permission-form-container" th:insert="~{fragments/group/groupPermissionForm :: groupPermissionFormFragment(${groups}, ${permissions})}"></div>
+    <div id="group-permission-list-container" th:insert="~{fragments/group/groupPermissions :: groupPermissionsFragment(${groupPermissions})}"></div>
+
+</body>
+</html>

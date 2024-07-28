@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: headFragment}"></head>
+<body>
+  <header th:replace="~{fragments/header :: headerFragment}"></header>
+  <h1>Welcome to the Campus Page</h1>
+  <br />
+  <div id="campus-list-container" th:insert="~{fragments/campus/campuses :: campusesFragment (${campuses})}"></div>
+  <div id="campus-form-container" th:insert="~{fragments/campus/campusForm :: campusFormFragment}"></div>
+</body>
+</html>

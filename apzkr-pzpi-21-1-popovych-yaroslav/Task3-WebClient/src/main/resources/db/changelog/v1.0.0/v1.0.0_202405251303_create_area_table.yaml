@@ -1,0 +1,60 @@
+databaseChangeLog:
+  - changeSet:
+      id: v1.0.0_202405251303_create_area_table
+      author: anonymous
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: area_id_seq
+            startValue: 1
+            cacheSize: 1
+            cycle: false
+        - createTable:
+            columns:
+              - column:
+                  defaultValueSequenceNext: area_id_seq
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_area_account
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: campus_id
+                  type: BIGINT
+
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: updated_at
+                  type: DATETIME
+              - column:
+                  name: version
+                  type: BIGINT
+              - column:
+                  name: created_by
+                  type: VARCHAR(255)
+              - column:
+                  name: updated_by
+                  type: VARCHAR(255)
+            tableName: area
+        - addForeignKeyConstraint:
+            baseColumnNames: campus_id
+            baseTableName: area
+            constraintName: FR_AREA_ON_CAMPUS
+            referencedColumnNames: id
+            referencedTableName: campus
+

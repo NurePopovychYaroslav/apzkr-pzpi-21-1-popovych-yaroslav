@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: headFragment}"></head>
+<body>
+  <header th:replace="~{fragments/header :: headerFragment}"></header>
+  <h1>Welcome to the Permission Page</h1>
+  <br />
+  <div id="permission-list-container" th:insert="~{fragments/permission/permissions :: permissionsFragment (${permissions})}"></div>
+  <div id="permission-form-container" th:insert="~{fragments/permission/permissionForm :: permissionFormFragment}"></div>
+</body>
+</html>

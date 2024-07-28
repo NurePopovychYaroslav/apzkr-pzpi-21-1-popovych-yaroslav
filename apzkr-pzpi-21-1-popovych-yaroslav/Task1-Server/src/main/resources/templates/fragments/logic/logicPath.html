@@ -1,0 +1,67 @@
+<div id="logic-path" th:fragment="logicPath (students, campuses)">
+  <h4>Logic Path search!</h4>
+  <form id="campus-area-form-path">
+    <div>
+      <label for="student-path">Select Student:</label>
+      <select id="student-path" name="student">
+        <option th:value="-1">Select a Student</option>
+        <th:block th:each="student : ${students}">
+          <option th:value="${student.id}" th:text="${student.email}"></option>
+        </th:block>
+      </select>
+    </div>
+    <div>
+      <label for="campus-path">Select Campus:</label>
+      <select id="campus-path" name="campus" th:hx-get="@{/logic/area/path}" hx-target="#area-door-form-path" hx-include="this">
+        <option th:value="-1">-- Select a campus --</option>
+        <th:block th:each="campus : ${campuses}">
+          <option th:value="${campus.id}" th:text="${campus.name}"></option>
+        </th:block>
+      </select>
+    </div>
+    <div id="area-door-form-path"></div>
+
+
+  </form>
+</div>
+
+<div id="area-door-form-path" th:fragment="emptyAreaDoorFormPathFragment"></div>
+<div id="area-door-form-path" th:fragment="areaDoorFormPathFragment (areas)">
+    <div id="area-door-form-path-from">
+    <th:block>
+      <label for="area-from">Select From Area(From):</label>
+      <select id="area-from" name="areaFrom">
+        <option th:value="-1">Select an Area(From):</option>
+        <th:blcok th:each="area : ${areas}">
+          <option th:value="${area.id}" th:text="${area.name}"></option>
+        </th:blcok>
+      </select>
+    </th:block>
+  </div>
+
+  <div id="area-door-form-path-to">
+    <th:block>
+      <label for="area-to">Select From Area(To):</label>
+      <select id="area-to" name="areaTo">
+        <option th:value="-1">Select an Area(To):</option>
+        <th:blcok th:each="area : ${areas}">
+          <option th:value="${area.id}" th:text="${area.name}"></option>
+        </th:blcok>
+      </select>
+    </th:block>
+  </div>
+
+  <button hx-post="/logic/find-path"
+          hx-trigger="click"
+          hx-target="#logic-result"
+          hx-swap="outerHTML"
+          hx-include="#student-path, #campus-path, #area-from, #area-to"
+          type="button" class="btn btn-outline-primary"
+  >
+    Find Path
+  </button>
+</div>
+
+<div id="logic-result" th:fragment="logicResultPathFragment (result)">
+  <h5 th:text="${result}"></h5>
+</div>

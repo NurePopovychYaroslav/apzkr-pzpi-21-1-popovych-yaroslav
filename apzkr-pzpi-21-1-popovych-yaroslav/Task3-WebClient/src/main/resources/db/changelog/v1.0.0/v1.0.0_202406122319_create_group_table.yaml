@@ -1,0 +1,85 @@
+databaseChangeLog:
+  - changeSet:
+      id: v1.0.0_202406122319_create_group_table
+      author: anonymous
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: groups_id_seq
+            startValue: 1
+            cacheSize: 1
+            cycle: false
+        - createTable:
+            columns:
+              - column:
+                  defaultValueSequenceNext: groups_id_seq
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_groups_account
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: updated_at
+                  type: DATETIME
+              - column:
+                  name: version
+                  type: BIGINT
+              - column:
+                  name: created_by
+                  type: VARCHAR(255)
+              - column:
+                  name: updated_by
+                  type: VARCHAR(255)
+            tableName: groups
+
+        - createTable:
+            tableName: groups_permission
+            columns:
+              - column:
+                  name: group_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: permission_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+        - addPrimaryKey:
+            columnNames: group_id, permission_id
+            tableName: groups_permission
+            constraintName: pk_groups_permission
+
+        - addForeignKeyConstraint:
+            baseColumnNames: group_id
+            baseTableName: groups_permission
+            constraintName: FK_GROUPS_PERMISSION_ON_GROUPS
+            referencedTableName: groups
+            referencedColumnNames: id
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: CASCADE
+
+        - addForeignKeyConstraint:
+            baseColumnNames: permission_id
+            baseTableName: groups_permission
+            constraintName: FK_GROUPS_PERMISSION_ON_PERMISSION
+            referencedColumnNames: id
+            referencedTableName: permission
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: CASCADE

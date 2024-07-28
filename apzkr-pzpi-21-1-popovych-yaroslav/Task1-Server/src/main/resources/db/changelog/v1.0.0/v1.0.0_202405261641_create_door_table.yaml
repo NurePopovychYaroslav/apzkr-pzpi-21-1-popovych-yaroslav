@@ -1,0 +1,65 @@
+databaseChangeLog:
+  - changeSet:
+      id: v1.0.0_202405261641_create_door_table
+      author: anonymous
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: door_id_seq
+            startValue: 1
+            cacheSize: 1
+            cycle: false
+        - createTable:
+            columns:
+              - column:
+                  defaultValueSequenceNext: door_id_seq
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_door_account
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: area_from_id
+                  type: BIGINT
+              - column:
+                  name: area_to_id
+                  type: BIGINT
+
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: updated_at
+                  type: DATETIME
+              - column:
+                  name: version
+                  type: BIGINT
+              - column:
+                  name: created_by
+                  type: VARCHAR(255)
+              - column:
+                  name: updated_by
+                  type: VARCHAR(255)
+            tableName: door
+        - addForeignKeyConstraint:
+            baseColumnNames: area_from_id
+            baseTableName: door
+            constraintName: FR_DOOR_FROM_ON_AREA
+            referencedColumnNames: id
+            referencedTableName: area
+        - addForeignKeyConstraint:
+            baseColumnNames: area_to_id
+            baseTableName: door
+            constraintName: FR_DOOR_TO_ON_AREA
+            referencedColumnNames: id
+            referencedTableName: area
+

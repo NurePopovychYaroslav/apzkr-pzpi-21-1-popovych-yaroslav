@@ -1,0 +1,17 @@
+<div id="door-permission-list-container" th:fragment="doorPermissionsFragment (doorPermissions)">
+  <tr th:if="${#lists.isEmpty(doorPermissions)}">
+    <td colspan="2"> No Door Permissions Available </td>
+  </tr>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">DoorId</th>
+      <th scope="col">PermissionId</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody class="table-group-divider" th:each="doorPermission : ${doorPermissions}">
+      <tr th:replace="~{/fragments/door/doorPermission :: doorPermission (${doorPermission})}"></tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: headFragment}"></head>
+<body>
+  <header th:replace="~{fragments/header :: headerFragment}"></header>
+  <h1>Welcome to the Student Page</h1>
+  <br />
+  <div id="student-list-container" th:insert="~{fragments/student/students :: studentsFragment (${students})}"></div>
+  <div id="student-form-container" th:insert="~{fragments/student/studentForm :: studentFormFragment}"></div>
+
+  <div id="student-group-form-container" th:insert="~{fragments/student/studentGroupForm :: studentGroupFormFragment(${students}, ${groups})}"></div>
+  <div id="student-group-list-container" th:insert="~{fragments/student/studentGroups :: studentGroupsFragment(${studentGroups})}"></div>
+
+</body>
+</html>

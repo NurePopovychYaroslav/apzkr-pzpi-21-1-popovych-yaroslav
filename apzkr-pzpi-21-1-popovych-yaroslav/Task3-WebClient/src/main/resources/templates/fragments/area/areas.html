@@ -1,0 +1,23 @@
+<div id="area-list-container" th:fragment="areasFragment (areas)">
+    <tr th:if="${#lists.isEmpty(areas)}">
+        <td colspan="2">No Areas Available</td>
+    </tr>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col"></th>
+            <th scope="col">Name</th>
+            <th scope="col">Campus ID</th>
+            <th scope="col">createdAt</th>
+            <th scope="col">updatedAt</th>
+            <th scope="col">createdBy</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody class="table-group-divider" th:each="area : ${areas}">
+            <tr th:replace="~{/fragments/area/area :: areaFragment (${area})}"></tr>
+        </tbody>
+    </table>
+</div>

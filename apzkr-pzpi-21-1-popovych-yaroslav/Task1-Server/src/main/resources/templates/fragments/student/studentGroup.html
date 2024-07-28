@@ -1,0 +1,25 @@
+<tr th:fragment="studentGroup (studentGroup)">
+  <td>
+    <label for="studentId"></label>
+    <input class="form-control"
+           type="text"
+           th:value="${studentGroup.studentId}" id="studentId" th:name="studentId"
+           disabled readonly/>
+  </td>
+  <td>
+    <label for="groupId"></label>
+    <input class="form-control"
+           type="text"
+           th:value="${studentGroup.groupId}" id="groupId" th:name="groupId"
+           disabled readonly/>
+  </td>
+  <td>
+    <button type="button" class="btn btn-danger"
+            th:hx-delete="@{/student/{studentId}/group/{groupId}(studentId=${studentGroup.studentId},groupId=${studentGroup.groupId})}"
+            hx-target="#student-group-list-container"
+            hx-swap="outerHTML"
+    >
+      Delete
+    </button>
+  </td>
+</tr>

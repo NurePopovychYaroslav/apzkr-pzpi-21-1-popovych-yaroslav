@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: headFragment}"></head>
+<body>
+    <header th:replace="~{fragments/header :: headerFragment}"></header>
+    <h1>Welcome to the Home Page</h1>
+    <div th:replace="~{fragments/hello :: helloFragment(${message})}"></div>
+</body>
+</html>

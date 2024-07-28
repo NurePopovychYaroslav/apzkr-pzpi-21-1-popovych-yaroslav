@@ -1,0 +1,24 @@
+<div th:fragment="groupFormFragment">
+  <form class="row g-3"
+        hx-post="/group"
+        hx-target="#group-list-container"
+        hx-swap="outerHTML"
+  >
+    <div class="col-md-4">
+      <label for="validationDefault01" class="form-label">Name</label>
+      <input type="text" class="form-control" id="validationDefault01" name="name" required>
+    </div>
+
+    <div class="col-12">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+        <label class="form-check-label" for="invalidCheck2">
+          Agree to terms and conditions
+        </label>
+      </div>
+    </div>
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">Add Group</button>
+    </div>
+  </form>
+</div>

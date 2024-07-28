@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: headFragment}"></head>
+<body>
+    <header th:replace="~{fragments/header :: headerFragment}"></header>
+    <h1>Welcome to the Door Page</h1>
+    <br/>
+    <div id="door-list-container">
+        <div id="door-from-list-container" th:insert="~{fragments/door/doors :: doorsFragment (${fromDoors})}"></div>
+        <div id="door-to-list-container" th:insert="~{fragments/door/doors :: doorsFragment (${toDoors})}"></div>
+    </div>
+    <div id="door-form-container" th:insert="~{fragments/door/doorForm :: doorFormFragment (${areas})}"></div>
+
+    <div id="door-permission-form-container" th:insert="~{fragments/door/doorPermissionForm :: doorPermissionFormFragment(${fromDoors}, ${permissions})}"></div>
+    <div id="door-permission-list-container" th:insert="~{fragments/door/doorPermissions :: doorPermissionsFragment(${doorPermissions})}"></div>
+
+</body>
+</html>
